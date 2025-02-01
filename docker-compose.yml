@@ -117,10 +117,10 @@ services:
       - SECURITY.OAUTH2.TOKENURI=http://localhost:9900/oauth/token
       - SERVER_AUTH=http://localhost:9900
       - SERVER_AUTH_PING=http://localhost:9900/ping
-      - SERVICE_DESC = http://localhost:9902
-      - SERVICE_MOCK = http://localhost:9912
-      - SERVICE_NOTIFICATION = http://localhost:9920
-      - SERVER_SITE = http://localhost:8080
+      - SERVICE_DESC=http://localhost:9902
+      - SERVICE_MOCK=http://localhost:9912
+      - SERVICE_NOTIFICATION=http://localhost:9920
+      - SERVER_SITE=http://localhost:8080
     depends_on:
       - auth
       - desc
