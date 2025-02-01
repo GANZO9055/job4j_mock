@@ -16,10 +16,13 @@ services:
     build:
       context: ./services/auth
       dockerfile: Dockerfile
+    ports:
+      - "9900:9900"
     environment:
         - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cd_auth
         - SPRING_DATASOURCE_USERNAME=compose-postgres
         - SPRING_DATASOURCE_PASSWORD=compose-postgres
+        - SERVER_NOTIFICATION=http://localhost:9920
     depends_on:
       - auth_db
 
@@ -39,10 +42,13 @@ services:
     build:
       context: ./services/desc
       dockerfile: Dockerfile
+    ports:
+      - "9902:9902"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cd_desc
       - SPRING_DATASOURCE_USERNAME=compose-postgres
       - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SERVER_NOTIFICATION=http://localhost:9920
     depends_on:
       - desc_db
 
@@ -62,10 +68,13 @@ services:
     build:
       context: ./services/mock
       dockerfile: Dockerfile
+    ports:
+      - "9912:9912"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mock
       - SPRING_DATASOURCE_USERNAME=compose-postgres
       - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SERVER_NOTIFICATION=http://localhost:9920
     depends_on:
       - mock_db
 
@@ -85,10 +94,14 @@ services:
     build:
       context: ./services/notification
       dockerfile: Dockerfile
+    ports:
+      - "9920:9920"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cd_notification
       - SPRING_DATASOURCE_USERNAME=compose-postgres
       - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SERVER_AUTH=http://localhost:9900
+      - SERVER_SITE_URL_LOGIN=http://localhost:8080/login
     depends_on:
       - notification_db
 
@@ -97,7 +110,17 @@ services:
     build:
       context: ./services/site
       dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
     environment:
+      - SECURITY.OAUTH2.RESOURCE.USERINFOURI=http://localhost:9000/user
+      - SECURITY.OAUTH2.TOKENURI=http://localhost:9900/oauth/token
+      - SERVER_AUTH=http://localhost:9900
+      - SERVER_AUTH_PING=http://localhost:9900/ping
+      - SERVICE_DESC = http://localhost:9902
+      - SERVICE_MOCK = http://localhost:9912
+      - SERVICE_NOTIFICATION = http://localhost:9920
+      - SERVER_SITE = http://localhost:8080
     depends_on:
       - auth
       - desc
