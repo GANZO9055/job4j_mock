@@ -203,4 +203,27 @@ Smoke-тесты:
 - Mock сервис - http://localhost:9912/swagger-ui/index.html
 - Notification сервис - http://localhost:9920/swagger-ui/index.html
 
+#### Запуск приложения через Docker Compose
+
+1. Установите Docker и Docker Compose
+Убедитесь, что у вас установлены Docker и Docker Compose.<br> 
+Если они не установлены, выполните следующие команды:<br>
+Для установки Docker:<br> 
+    - sudo apt-get update
+    - sudo apt-get install docker.io<br>
+Для установки Docker Compose:
+    - sudo apt-get install docker-compose<br>
+2. Создайте файл docker-compose.yml в корневой директории вашего проекта.
+3. Перейдите в директорию, где находится ваш docker-compose.yml, и выполните команду:<br>
+    - docker-compose up<br>
+  Эта команда запустит все сервисы, описанные в docker-compose.yml.<br> 
+  Если вы хотите запустить контейнеры в фоновом режиме, используйте флаг -d:<br>
+    - docker-compose up -d
+4. Остановка и управление: <br>
+   Чтобы остановить контейнеры, выполните:<br>
+   - docker-compose down<br>
+   Чтобы пересобрать и перезапустить контейнеры:
+   - docker-compose up --build<br>
+   Чтобы просмотреть логи конкретного сервиса:
+   - docker-compose logs <service_name><br>
 ___
