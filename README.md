@@ -211,7 +211,7 @@ Smoke-тесты:
 Для установки Docker:<br> 
     - sudo apt-get update
     - sudo apt-get install docker.io<br>
-Для установки Docker Compose:
+Для установки Docker Compose:<br>
     - sudo apt-get install docker-compose<br>
 2. Создайте файл docker-compose.yml в корневой директории вашего проекта.
 3. Перейдите в директорию, где находится ваш docker-compose.yml, и выполните команду:<br>
@@ -219,8 +219,9 @@ Smoke-тесты:
   Эта команда запустит все сервисы, описанные в docker-compose.yml.<br> 
   Если вы хотите запустить контейнеры в фоновом режиме, используйте флаг -d:<br>
     - docker-compose up -d
-4. Остановка и управление: <br>
-   Чтобы остановить контейнеры, выполните:<br>
+4. Остановка и управление:<br>
+
+    Чтобы остановить контейнеры, выполните:<br>
    - docker-compose down<br>
    Чтобы пересобрать и перезапустить контейнеры:
    - docker-compose up --build<br>
